@@ -10,9 +10,24 @@
           }"-->
 
         <button  *ngFor="let region of regiones" 
-                  class="btn btn-outline-primary"
-                  (click)="activarRegion(region)">
-            {{region}}
+                  [class]="getClassCSS(region)"
+                  (click)="activarRegion(region)"
+                  (click)="buscar(region)"
+                  >
+            {{region|titlecase}}
         </button>
     </div>
+</div>
+
+<div class="row">
+  <hr>
+  <div *ngIf="hayError" class="alert alert-danger">
+    No se encontro información con {{termino}}.
+  </div>
+  
+  <div *ngIf="paises.length > 0" lass="row">
+    <div class="col">
+      <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+  </div>
 </div>
